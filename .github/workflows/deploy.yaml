@@ -34,7 +34,9 @@ jobs:
 
       - name: Upload HTML files to GCS
         run: |
-          gsutil cp -r *.html  gs://your-bucket-name/  # Replace with your bucket name
+          gsutil cp -r *.html  gs://cont45/  # Replace with your bucket name
+          gsutil cp -r *.png  gs://cont45/  # Replace with your bucket name
+          gsutil cp -r *.css  gs://cont45/  # Replace with your bucket name
           # Use 'gsutil rsync' for more efficient updates
           # gsutil rsync -r build/ gs://your-bucket-name/
 
