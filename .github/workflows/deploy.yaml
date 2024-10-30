@@ -1,0 +1,35 @@
+name: Deploy Static HTML to GCS
+
+on:
+  push:
+    branches:
+      - main  # Trigger on pushes to the 'main' branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          service_account_key: ${{ secrets.GCP_SA_KEY }}  # Replace with your secret name
+
+      - name: Install dependencies (if needed)
+        run: |
+          # Install any necessary tools or libraries
+          # Example: npm install
+
+      - name: Build static HTML (if needed)
+        run: |
+          # Run your build process to generate HTML files
+          # Example: npm run build
+
+      - name: Upload HTML files to GCS
+        run: |
+          gsutil cp -r *.html gs://cont45/  # Replace with your bucket name
+          # Use 'gsutil rsync' for more efficient updates
+          # gsutil rsync -r build/ gs://your-bucket-name/
+
